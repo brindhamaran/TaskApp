@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_shape">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/combo_1" />
+
+
+        <Button
+            android:id="@+id/normalBtn"
+            android:layout_width="119dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imageView"
+            android:background="@drawable/itemsbutton_shape"
+            android:padding="3dp"
+            android:text="NORMAL"
+            android:textColor="#ffffff"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/regularBtn"
+            android:layout_width="119dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/imageView"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/itemsbutton_shape"
+            android:padding="3dp"
+            android:text="REGULAR"
+            android:textColor="#ffffff"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/largeBtn"
+            android:layout_width="119dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/imageView"
+            android:background="@drawable/itemsbutton_shape"
+            android:padding="3dp"
+            android:text="LARGE"
+            android:textColor="#ffffff"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/comboName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/normalBtn"
+            android:text="BURGER WITH CHIPS \n INR"
+            android:textColor="#FFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/minusImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/normalBtn"
+            android:layout_marginStart="156dp"
+            android:src="@drawable/minus" />
+
+        <TextView
+            android:id="@+id/amtText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/normalBtn"
+            android:layout_marginEnd="107dp"
+            android:text="00"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/plusImage"
+            android:layout_width="39dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/normalBtn"
+            android:layout_marginEnd="22dp"
+            android:src="@drawable/plus" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="57dp"
+        android:background="#f5fff025">
+
+        <Button
+            android:id="@+id/inrBtn"
+            android:layout_width="116dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="@android:color/transparent"
+            android:drawableRight="@android:drawable/arrow_up_float"
+            android:text="INR"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/payBtn"
+            android:layout_width="119dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            android:text="PAY"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
