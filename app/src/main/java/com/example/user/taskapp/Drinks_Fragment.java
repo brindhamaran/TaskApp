@@ -11,7 +11,6 @@ public class Drinks_Fragment extends Fragment {
 
     ViewPager viewPager;
     int images[];
-
     {
         images = new int[]{R.drawable.combo_3, R.drawable.combo_2, R.drawable.combo_3};
     }
