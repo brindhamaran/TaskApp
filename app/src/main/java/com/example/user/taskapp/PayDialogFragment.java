@@ -13,7 +13,7 @@ import android.widget.TextView;
  */
 public class PayDialogFragment extends BottomSheetDialogFragment {
 
-    String mString,mAmt,comboName;
+    String mString,mAmt,comboName,totPayVal;
 
     static PayDialogFragment newInstance(String string) {
         PayDialogFragment f = new PayDialogFragment();
@@ -28,16 +28,19 @@ public class PayDialogFragment extends BottomSheetDialogFragment {
         super.onCreate(savedInstanceState);
         mString = getArguments().getString("string");
     }
-    public void payAmt(String val,String comboName){
+    public void payAmt(String val,String comboName,String totPayVal){
         this.mAmt = val;
-        this.comboName = comboName + " " ;
+        this.comboName = comboName  ;
+        this.totPayVal = totPayVal ;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.pay_layout, container, false);
-        TextView tv = (TextView) v.findViewById(R.id.amtText);
-        tv.setText(comboName + mAmt);
+        TextView amtText = (TextView) v.findViewById(R.id.amtText);
+        TextView totText = (TextView) v.findViewById(R.id.totText);
+        amtText.setText(comboName );
+        totText.setText(totPayVal);
         return v;
     }
 }

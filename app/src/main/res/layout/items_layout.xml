@@ -116,6 +116,7 @@
             android:background="@android:color/transparent"
             android:drawableRight="@android:drawable/arrow_up_float"
             android:text="INR"
+            android:textColor="#000000"
             android:textSize="20sp" />
 
         <Button
@@ -127,6 +128,7 @@
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:text="PAY"
+            android:textColor="#000000"
             android:textSize="20sp" />
     </RelativeLayout>
 

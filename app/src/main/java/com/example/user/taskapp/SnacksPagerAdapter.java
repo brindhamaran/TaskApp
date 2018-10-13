@@ -3,6 +3,7 @@ package com.example.user.taskapp;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -15,13 +16,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SnacksPagerAdapter extends PagerAdapter{
+public class SnacksPagerAdapter extends PagerAdapter {
     Context context;
     int images[];
     int comboStyle = 0;
     int totVal  ;
-    int sumVal;
     LayoutInflater layoutInflater;
+    int normalcount = 0, regularCount = 0, largeCount = 0,normalCoutVal = 1,regularCoutVal = 1,largeCoutVal = 1;
+    String normalTotal = null,regularTotal = null,largeTotal = null, normalData, regularData,largeData;
 
 
     public SnacksPagerAdapter(Context context, int images[]) {
@@ -64,7 +66,20 @@ public class SnacksPagerAdapter extends PagerAdapter{
                 largeBtn.setBackgroundColor(Color.TRANSPARENT);
                 regularBtn.setBackgroundResource(R.drawable.itemsbutton_shape);
                 largeBtn.setBackgroundResource(R.drawable.itemsbutton_shape);
+                normalBtn.setTextColor(Color.BLACK);
+                regularBtn.setTextColor(Color.WHITE);
+                largeBtn.setTextColor(Color.WHITE);
                 comboStyle = 0 ;
+                normalcount ++;
+                amtText.setText(String.valueOf(0));
+                if(normalcount > 1){
+                    amtText.setText(String.valueOf(normalCoutVal));
+                    inrBtn.setText(normalTotal);
+                    comboName.setText(normalData);
+                }else{
+                    amtText.setText(String.valueOf(0));
+                    comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(100));
+                }
 
             }
         });
@@ -77,9 +92,19 @@ public class SnacksPagerAdapter extends PagerAdapter{
                 largeBtn.setBackgroundColor(Color.TRANSPARENT);
                 normalBtn.setBackgroundResource(R.drawable.itemsbutton_shape);
                 largeBtn.setBackgroundResource(R.drawable.itemsbutton_shape);
+                normalBtn.setTextColor(Color.WHITE);
+                regularBtn.setTextColor(Color.BLACK);
+                largeBtn.setTextColor(Color.WHITE);
                 comboStyle = 1;
-                comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(200));
-
+                regularCount ++;
+                if(regularCount > 1){
+                    amtText.setText(String.valueOf(regularCoutVal));
+                    inrBtn.setText(regularTotal);
+                    comboName.setText(regularData);
+                }else{
+                    amtText.setText(String.valueOf(0));
+                    comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(200));
+                }
             }
         });
 
@@ -91,38 +116,81 @@ public class SnacksPagerAdapter extends PagerAdapter{
                 normalBtn.setBackgroundColor(Color.TRANSPARENT);
                 regularBtn.setBackgroundResource(R.drawable.itemsbutton_shape);
                 normalBtn.setBackgroundResource(R.drawable.itemsbutton_shape);
+                normalBtn.setTextColor(Color.WHITE);
+                regularBtn.setTextColor(Color.WHITE);
+                largeBtn.setTextColor(Color.BLACK);
                 comboStyle = 2 ;
-                comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(500));
-
+                largeCount ++;
+                if(largeCount > 1){
+                    amtText.setText(String.valueOf(largeCoutVal));
+                    inrBtn.setText(largeTotal);
+                    comboName.setText(largeData);
+                }else{
+                    amtText.setText(String.valueOf(0));
+                    comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(500));
+                }
             }
         });
 
-        comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(100));
-        inrBtn.setText("INR "+ String.valueOf(100));
+        comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(00));
+        inrBtn.setText("INR "+ String.valueOf(0));
         plusImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 totVal = Integer.parseInt(amtText.getText().toString());
                 int totamt = totVal + 1;
-                amtText.setText(String.valueOf(totamt));
+//                amtText.setText(String.valueOf(totamt));
                 if(comboStyle == 1){
-                    int amt = totamt * 200;
-                    comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(amt));
-                    inrBtn.setText("INR "+ String.valueOf(amt));
+
+                    if(regularCount >= 1 ) {
+                        regularCoutVal = totamt;
+                        int amt = regularCoutVal * 200;
+                        amtText.setText(String.valueOf(regularCoutVal));
+                        regularData = "POPCORN " + System.lineSeparator() + " INR " + String.valueOf(amt);
+                        comboName.setText(regularData);
+                        inrBtn.setText("REGULAR INR " + String.valueOf(amt));
+                        regularTotal = "REGULAR INR: " + amt;
+                    }else{
+                        int amt = totamt * 200;
+                        regularCoutVal = totamt;
+                        comboName.setText("POPCORN " + System.lineSeparator() + " INR " + String.valueOf(amt));
+                        inrBtn.setText("REGULAR INR " + String.valueOf(amt));
+                        regularTotal = "REGULAR INR: " + amt;
+                    }
                 }else if(comboStyle == 2){
-
-                    int amt = totamt * 500;
-
-                    comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(amt));
-                    inrBtn.setText("INR "+ String.valueOf(amt));
+                    if(largeCount >= 1 ) {
+                        largeCoutVal = totamt;
+                        int amt = largeCoutVal * 500;
+                        amtText.setText(String.valueOf(largeCoutVal));
+                        largeData = "POPCORN " + System.lineSeparator() + " INR " + String.valueOf(amt);
+                        comboName.setText(largeData);
+                        inrBtn.setText("LARGE INR " + String.valueOf(amt));
+                        largeTotal = "LARGE INR: " + amt;
+                    }else{
+                        int amt = totamt * 500;
+                        largeCoutVal = totamt;
+                        comboName.setText("POPCORN " + System.lineSeparator() + " INR " + String.valueOf(amt));
+                        inrBtn.setText("LARGE INR " + String.valueOf(amt));
+                        largeTotal = "LARGE INR: " + amt;
+                    }
 
                 }else {
-
-                    int amt = totamt * 100;
-                    comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(amt));
-                    inrBtn.setText("INR "+ String.valueOf(amt));
-
+                    if(normalcount >= 1 ) {
+                        normalCoutVal = totamt;
+                        int amt = normalCoutVal * 100;
+                        amtText.setText(String.valueOf(normalCoutVal));
+                        normalData = "POPCORN " + System.lineSeparator() + " INR " + String.valueOf(amt);
+                        comboName.setText(normalData);
+                        inrBtn.setText("NORMAL INR " + String.valueOf(amt));
+                        normalTotal = "NORMAL INR: " + amt;
+                    }else{
+                        int amt = totamt * 100;
+                        normalCoutVal = totamt;
+                        comboName.setText("POPCORN " + System.lineSeparator() + " INR " + String.valueOf(amt));
+                        inrBtn.setText("NORMAL INR " + String.valueOf(amt));
+                        normalTotal = "NORMAL INR: " + amt;
+                    }
                 }
 
             }
@@ -138,35 +206,68 @@ public class SnacksPagerAdapter extends PagerAdapter{
                     if (totamt < 0) {
                         amtText.setText(String.valueOf(00));
                         comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(100));
-                        inrBtn.setText("INR "+ String.valueOf(100));
+                        inrBtn.setText("REGULAR INR: " + String.valueOf(100));
                     }else{
-                        amtText.setText(String.valueOf(totamt));
-                        int amt = totamt * 200;
-                        comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(amt));
-                        inrBtn.setText("INR "+ String.valueOf(amt));
+                        if(regularCount >= 1 ) {
+                            regularCoutVal = totamt;
+                            int amt = regularCoutVal * 200;
+                            amtText.setText(String.valueOf(regularCoutVal));
+                            regularData = "POPCORN " + System.lineSeparator() + " INR " + String.valueOf(amt);
+                            comboName.setText(regularData);
+                            inrBtn.setText("REGULAR INR " + String.valueOf(amt));
+                            regularTotal = "REGULAR INR: " + amt;
+                        }else{
+                            int amt = totamt * 200;
+                            regularCoutVal = totamt;
+                            comboName.setText("POPCORN " + System.lineSeparator() + " INR " + String.valueOf(amt));
+                            inrBtn.setText("REGULAR INR " + String.valueOf(amt));
+                            regularTotal = "REGULAR INR: " + amt;
+                        }
                     }
                 }else if(comboStyle == 2){
 
                     if (totamt < 0) {
                         amtText.setText(String.valueOf(00));
                         comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(100));
-                        inrBtn.setText("INR "+ String.valueOf(100));
+                        inrBtn.setText("LARGE INR "+ String.valueOf(100));
                     }else{
-                        amtText.setText(String.valueOf(totamt));
-                        int amt = totamt * 500;
-                        comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(amt));
-                        inrBtn.setText("INR "+ String.valueOf(amt));
+                        if(largeCount >= 1 ) {
+                            largeCoutVal = totamt;
+                            int amt = largeCoutVal * 500;
+                            amtText.setText(String.valueOf(largeCoutVal));
+                            largeData = "POPCORN " + System.lineSeparator() + " INR " + String.valueOf(amt);
+                            comboName.setText(largeData);
+                            inrBtn.setText("LARGE INR " + String.valueOf(amt));
+                            largeTotal = "LARGE INR: " + amt;
+                        }else{
+                            int amt = totamt * 500;
+                            largeCoutVal = totamt;
+                            comboName.setText("POPCORN " + System.lineSeparator() + " INR " + String.valueOf(amt));
+                            inrBtn.setText("LARGE INR " + String.valueOf(amt));
+                            largeTotal = "LARGE INR: " + amt;
+                        }
                     }
                 }else {
                     if (totamt < 0) {
                         amtText.setText(String.valueOf(00));
                         comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(100));
-                        inrBtn.setText("INR "+ String.valueOf(100));
+                        inrBtn.setText("NORMAL INR "+ String.valueOf(100));
                     }else{
-                        amtText.setText(String.valueOf(totamt));
-                        int amt = totamt * 100;
-                        comboName.setText("POPCORN " +System.lineSeparator() +" INR "+ String.valueOf(amt));
-                        inrBtn.setText("INR "+ String.valueOf(amt));
+                        if(normalcount >= 1 ) {
+                            normalCoutVal = totamt;
+                            int amt = normalCoutVal * 100;
+                            amtText.setText(String.valueOf(normalCoutVal));
+                            normalData = "POPCORN " + System.lineSeparator() + " INR " + String.valueOf(amt);
+                            comboName.setText(normalData);
+                            inrBtn.setText("NORMAL INR " + String.valueOf(amt));
+                            normalTotal = "NORMAL INR: " + amt;
+                        }else{
+                            int amt = totamt * 100;
+                            normalCoutVal = totamt;
+                            comboName.setText("POPCORN " + System.lineSeparator() + " INR " + String.valueOf(amt));
+                            inrBtn.setText("NORMAL INR " + String.valueOf(amt));
+                            normalTotal = "NORMAL INR: " + amt;
+                        }
                     }
 
 
@@ -187,10 +288,21 @@ public class SnacksPagerAdapter extends PagerAdapter{
 
             @Override
             public void onClick(View v) {
-                payDialogFragment.payAmt(inrBtn.getText().toString(),"POPCORN");
+                if(normalTotal == null ){
+                    normalTotal = "NORMAL INR: 0";
+                }
+                if(regularTotal == null){
+                    regularTotal = "REGULAR INR: 0";
+                }
+                if(largeTotal == null){
+                    largeTotal = "LARGE INR: 0";
+                }
+                String payVal = normalTotal +System.lineSeparator() + regularTotal +System.lineSeparator() + largeTotal;
+                payDialogFragment.payAmt(inrBtn.getText().toString(),"POPCORN",payVal);
                 payDialogFragment.show( ((AppCompatActivity) context).getSupportFragmentManager(),payDialogFragment.getTag());
             }
         });
+
         imageView.setImageResource(images[position]);
 
         container.addView(itemView);

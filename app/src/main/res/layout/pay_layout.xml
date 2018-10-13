@@ -23,14 +23,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textSize="15sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="#000000"/>
 
     <TextView
+        android:id="@+id/totText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textColor="#FFFFFF"/>
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
 
 </LinearLayout>
